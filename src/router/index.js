@@ -22,22 +22,22 @@ export default new Router({
                 {
                     path: '/icon',
                     component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
-                    meta: { title: '自定义图标' }
+                    meta: { title: '财务管理' }
                 },
                 {
                     path: '/table',
                     component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
-                    meta: { title: '基础表格' }
+                    meta: { title: '操作功能' }
                 },
                 {
                     path: '/tabs',
                     component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
-                    meta: { title: 'tab选项卡' }
+                    meta: { title: '团队管理' }
                 },
                 {
                     path: '/form',
                     component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseForm.vue'),
-                    meta: { title: '基本表单' }
+                    meta: { title: '修改信息' }
                 },
                 {
                     // 富文本编辑器组件
@@ -85,23 +85,8 @@ export default new Router({
                     // 权限页面
                     path: '/permission',
                     component: () => import(/* webpackChunkName: "permission" */ '../components/page/Permission.vue'),
-                    meta: { title: '权限测试', permission: true }
-                },
-                {
-                    path: '/404',
-                    component: () => import(/* webpackChunkName: "404" */ '../components/page/404.vue'),
-                    meta: { title: '404' }
-                },
-                {
-                    path: '/403',
-                    component: () => import(/* webpackChunkName: "403" */ '../components/page/403.vue'),
-                    meta: { title: '403' }
-                },
-                {
-                    path: '/donate',
-                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Donate.vue'),
-                    meta: { title: '支持作者' }
-                }
+                    meta: { title: '安全设置'}
+                },          
             ]
         },
         {
