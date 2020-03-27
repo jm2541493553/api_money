@@ -21,6 +21,7 @@
                 </el-select>
                 <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                  <el-button type="primary" icon="el-icon-return" @click="handleReturn">返回首页</el-button>
             </div>
             <el-table
                 :data="tableData"
@@ -33,28 +34,16 @@
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
                 <el-table-column prop="name" label="用户名"></el-table-column>
-                <el-table-column label="账户余额">
-                    <template slot-scope="scope">￥{{scope.row.money}}</template>
+                <el-table-column label="级别">
+                    <template slot-scope="scope">{{scope.row.money}}级</template>
                 </el-table-column>
-                <el-table-column label="头像(查看大图)" align="center">
-                    <template slot-scope="scope">
-                        <el-image
-                            class="table-td-thumb"
-                            :src="scope.row.thumb"
-                            :preview-src-list="[scope.row.thumb]"
-                        ></el-image>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="address" label="地址"></el-table-column>
-                <el-table-column label="状态" align="center">
-                    <template slot-scope="scope">
-                        <el-tag
-                            :type="scope.row.state==='成功'?'success':(scope.row.state==='失败'?'danger':'')"
-                        >{{scope.row.state}}</el-tag>
-                    </template>
-                </el-table-column>
+                
+                <el-table-column prop="referees" label="推荐人"></el-table-column>
+               
+                 <el-table-column prop="putpeople" label="安置人"></el-table-column>
+                  <el-table-column prop="putphone" label="安置人电话号"></el-table-column>
 
-                <el-table-column prop="date" label="注册时间"></el-table-column>
+                <el-table-column prop="date" label="认证时间"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -89,9 +78,16 @@
                 <el-form-item label="用户名">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
-                <el-form-item label="地址">
-                    <el-input v-model="form.address"></el-input>
+                <el-form-item label="推荐人">
+                    <el-input v-model="form.referees"></el-input>
                 </el-form-item>
+                <el-form-item label="安置人">
+                    <el-input v-model="form.putpeople"></el-input>
+                </el-form-item>
+                <el-form-item label="安置人手机号">
+                    <el-input v-model="form.putphone"></el-input>
+                </el-form-item>
+                
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible = false">取 消</el-button>
@@ -182,7 +178,13 @@ export default {
         handlePageChange(val) {
             this.$set(this.query, 'pageIndex', val);
             this.getData();
-        }
+        },
+        // 返回首页
+        handleReturn()
+        {
+                
+        }   
+
     }
 };
 </script>
