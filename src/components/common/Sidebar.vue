@@ -73,8 +73,18 @@ export default {
                 },
                  {
                     icon: 'el-icon-lx-emoji',
-                    index: 'icon',
-                    title: '财务管理'
+                    index: '2',
+                    title: '财务管理',
+                    subs: [
+                        {
+                            inedx: 'jiangjinchaxun',
+                            title: '奖金查询'
+                        },
+                        {
+                            index: 'jiangjintixian',
+                            title:' 奖金提现'
+                        }
+                    ]
                 },
                 {
                     icon: 'el-icon-lx-calendar',

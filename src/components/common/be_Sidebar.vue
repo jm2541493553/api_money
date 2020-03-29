@@ -64,34 +64,29 @@ export default {
                 {
                     icon: 'el-icon-lx-cascades',
                     index: 'be_table',
-                    title: '操作功能'
+                    title: '结算功能'
                 },
                 {
                     icon: 'el-icon-lx-copy',
                     index: 'be_tabs',
-                    title: '团队管理'
+                    title: '修改功能'
                 },
                  {
                     icon: 'el-icon-lx-emoji',
                     index: 'be_icon',
-                    title: '财务管理'
+                    title: '统计查询'
+                },
+                 {
+                    icon: 'el-icon-lx-emoji',
+                    index: 'be_form',
+                    title: '打印输出'
                 },
                 {
-                    icon: 'el-icon-lx-calendar',
-                    index: '3',
-                    title: '个人中心',
-                    subs: [
-                        {
-                            index: 'be_form',
-                            title: '修改信息'
-                        },
-                        {
-                            index: 'be_permission',
-                            title: '安全设置'
-                        },
-                       
-                    ]
+                    icon: 'el-icon-lx-emoji',
+                    index: 'be_permission',
+                    title: '系统管理'
                 },
+               
             ]
         };
     },

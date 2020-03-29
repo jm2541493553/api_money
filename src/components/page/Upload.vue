@@ -2,140 +2,162 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-lx-calendar"></i> 表单</el-breadcrumb-item>
-                <el-breadcrumb-item>图片上传</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-more-outline"></i> 财务管理</el-breadcrumb-item>
             </el-breadcrumb>
+            
         </div>
-        <div class="container">
-            <div class="content-title">支持拖拽</div>
-            <div class="plugins-tips">
-                Element UI自带上传组件。
-                访问地址：<a href="http://element.eleme.io/#/zh-CN/component/upload" target="_blank">Element UI Upload</a>
-            </div>
-            <el-upload
-                class="upload-demo"
-                drag
-                action="http://jsonplaceholder.typicode.com/api/posts/"
-                multiple>
-                <i class="el-icon-upload"></i>
-                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-            </el-upload>
-            <div class="content-title">支持裁剪</div>
-            <div class="plugins-tips">
-                vue-cropperjs：一个封装了 cropperjs 的 Vue 组件。
-                访问地址：<a href="https://github.com/Agontuk/vue-cropperjs" target="_blank">vue-cropperjs</a>
-            </div>
-            <div class="crop-demo">
-                <img :src="cropImg" class="pre-img">
-                <div class="crop-demo-btn">选择图片
-                    <input class="crop-input" type="file" name="image" accept="image/*" @change="setImage"/>
-                </div>
-            </div>
         
-            <el-dialog title="裁剪图片" :visible.sync="dialogVisible" width="30%">
-                <vue-cropper ref='cropper' :src="imgSrc" :ready="cropImage" :zoom="cropImage" :cropmove="cropImage" style="width:100%;height:300px;"></vue-cropper>
-                <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelCrop">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                </span>
-            </el-dialog>
-        </div>
+        
+         <div class="container">
+            <h2>奖金提现</h2>
+            
+            
+            <br>
+
+            <div class="search-box">
+                <el-input class="search" size="large" v-model="keyword1" clearable placeholder="提现金额"></el-input>
+                
+            </div>
+                <div class="search-box">
+                <el-input class="search" size="large" v-model="keyword2" clearable placeholder="安全密码"></el-input>
+                
+            </div>
+            
+             <el-button
+                    type="primary"
+                    icon="el-icon-check"
+                    class="handle-del mr10"
+                    @click="delAllSelection"
+                > 提现</el-button>
+                 <h2>历史记录</h2>
+            <el-table
+      :data="tableData"
+      style="width: 100%">
+      <el-table-column
+        prop="tixianjine"
+        label="提现金额"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="fuwufei"
+        label="服务费"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="shangchengjifen"
+        label="商城积分"
+        width="90">
+      </el-table-column>
+        <el-table-column
+        prop="shifajine"
+        label="实发金额"
+        width="180">
+      </el-table-column>
+        <el-table-column
+        prop="shenqingtixianshijian"
+        label="申请提现时间"
+        width="240">
+      </el-table-column>
+          <el-table-column
+        prop="fafangshijian"
+        label="发放时间"
+        width="240">
+      </el-table-column>
+         <el-table-column
+        prop="zhuangtai"
+        label="状态"
+        width="100">
+      </el-table-column>
+    </el-table>
+    <div class="block">
+  <el-pagination
+    layout="prev, pager, next"
+    :total="1000">
+  </el-pagination>
+</div>
+                
+            <ul>
+                
+                
+                <li class="icon-li" v-for="(item,index) in list" :key="index">
+                    <div class="icon-li-content">
+                        <i :class="`el-icon-lx-${item}`"></i>
+                        <span>{{item}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div> 
+
     </div>
 </template>
-
-<script>
-    import VueCropper  from 'vue-cropperjs';
+ <script>
     export default {
-        name: 'upload',
-        data: function(){
-            return {
-                defaultSrc: require('../../assets/img/img.jpg'),
-                fileList: [],
-                imgSrc: '',
-                cropImg: '',
-                dialogVisible: false,
-            }
-        },
-        components: {
-            VueCropper
-        },
-        methods:{
-            setImage(e){
-                const file = e.target.files[0];
-                if (!file.type.includes('image/')) {
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    this.dialogVisible = true;
-                    this.imgSrc = event.target.result;
-                    this.$refs.cropper && this.$refs.cropper.replace(event.target.result);
-                };
-                reader.readAsDataURL(file);
-            },
-            cropImage () {
-                this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
-            },
-            cancelCrop(){
-                this.dialogVisible = false;
-                this.cropImg = this.defaultSrc;
-            },
-            imageuploaded(res) {
-                console.log(res)
-            },
-            handleError(){
-                this.$notify.error({
-                    title: '上传失败',
-                    message: '图片上传接口上传失败，可更改为自己的服务器接口'
-                });
-            }
-        },
-        created(){
-            this.cropImg = this.defaultSrc;
-        }
+      data() {
+        return {
+            keyword1: '',
+            keyword2: '',
+          tableData: [{
+            tixianjine: 30000,
+            fuwufei: 100,
+            shangchengjifen: 48,
+            shifajine:29900,
+            shenqingtixianshijian:'2019-03-08',
+            fafangshijian:'2019-03-10',
+            zhuangtai:'已到账'
+          }, {
+            tixianjine: 50000,
+            fuwufei: 300,
+            shangchengjifen: 74,
+            shifajine:49700,
+            shenqingtixianshijian:'2019-03-11',
+            fafangshijian:'2019-03-13',
+            zhuangtai:'提现中'
+          }]
+          }
+      }
     }
-</script>
+        
+  </script>
 
 <style scoped>
-    .content-title{
-        font-weight: 400;
-        line-height: 50px;
-        margin: 10px 0;
-        font-size: 22px;
-        color: #1f2f3d;
-    }
-    .pre-img{   
-        width: 100px;
-        height: 100px;
-        background: #f8f8f8;
-        border: 1px solid #eee;
-        border-radius: 5px;
-    }
-    .crop-demo{
-        display: flex;
-        align-items: flex-end;
-    }
-    .crop-demo-btn{
-        position: relative;
-        width: 100px;
-        height: 40px;
-        line-height: 40px;
-        padding: 0 20px;
-        margin-left: 30px;
-        background-color: #409eff;
-        color: #fff;
-        font-size: 14px;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    .crop-input{
-        position: absolute;
-        width: 100px;
-        height: 40px;
-        left: 0;
-        top: 0;
-        opacity: 0;
-        cursor: pointer;
-    }
+.example-p{
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+.search-box{
+    text-align: center;
+    margin-top: 10px;
+}
+.search{
+    width: 300px;
+}
+ul,li{
+    list-style: none;
+}
+.icon-li{
+    display: inline-block;
+    padding: 10px;
+    width: 120px;
+    height: 120px;
+}
+.icon-li-content{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.icon-li-content i{
+    font-size: 36px;
+    color: #606266;
+}
+.icon-li-content span{
+    margin-top: 10px;
+    color: #787878;
+}
+.handle-del {
+    margin: 0 auto;
+}
 </style>

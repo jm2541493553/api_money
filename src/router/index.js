@@ -6,11 +6,7 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
-            path: '/index',
-            redirect: '/be_dashboard'
-        },
-        {
-            path: '/admin_index',
+            path: '/',
             redirect: '/dashboard'
         },
         {
@@ -24,9 +20,14 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
-                    path: '/icon',
-                    component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
-                    meta: { title: '财务管理' }
+                    path: '/jiangjinchaxun',
+                    component: () => import(/* webpackChunkName: "jiangjinchaxun */ '../components/page/Upload.vue'),
+                    meta: { title: '奖金查询' }
+                },
+                {
+                    path: '/jiangjintixian',
+                    component: () => import(/* webpackChunkName: "jiangjintixian */ '../components/page/Icon.vue'),
+                    meta: { title: '奖金提现' }
                 },
                 {
                     path: '/table',
@@ -62,31 +63,30 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
-                    path: '/be_icon',
-                    component: () => import(/* webpackChunkName: "icon" */ '../components/page/be_Icon.vue'),
-                    meta: { title: '财务管理' }
+                    path: '/be_form',
+                    component: () => import(/* webpackChunkName: "be_BaseForm */ '../components/page/be_BaseForm.vue'),
+                    meta: { title: '结算功能' }
                 },
                 {
                     path: '/be_table',
-                    component: () => import(/* webpackChunkName: "table" */ '../components/page/be_BaseTable.vue'),
-                    meta: { title: '操作功能' }
+                    component: () => import(/* webpackChunkName: "jiangjintixian */ '../components/page/be_BaseTable.vue'),
+                    meta: { title: '结算功能' }
+                },
+                {
+                    path: '/be_icon',
+                    component: () => import(/* webpackChunkName: "table" */ '../components/page/Icon.vue'),
+                    meta: { title: '统计查询' }
                 },
                 {
                     path: '/be_tabs',
                     component: () => import(/* webpackChunkName: "tabs" */ '../components/page/be_Tabs.vue'),
-                    meta: { title: '团队管理' }
+                    meta: { title: '修改功能' }
                 },
                 {
-                    path: '/be_form',
-                    component: () => import(/* webpackChunkName: "form" */ '../components/page/be_BaseForm.vue'),
-                    meta: { title: '修改信息' }
-                },
-                {
-                    // 权限页面
                     path: '/be_permission',
-                    component: () => import(/* webpackChunkName: "permission" */ '../components/page/be_Permission.vue'),
-                    meta: { title: '安全设置'}
-                },          
+                    component: () => import(/* webpackChunkName: "form" */ '../components/page/be_Permission.vue'),
+                    meta: { title: '系统管理' }
+                },         
             ]
         },
         {

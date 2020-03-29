@@ -2,6 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import ElementUI from 'element-ui';
+import axios from 'axios';
+import qs from 'qs';
 import VueI18n from 'vue-i18n';
 import { messages } from './components/common/i18n';
 import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
@@ -9,9 +11,13 @@ import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 import './assets/css/icon.css';
 import './components/common/directives';
 import 'babel-polyfill';
-
+import Axios from "axios"
+Vue.prototype.$axios = Axios;
+axios.defaults.baseURL = 'http://127.0.0.1:8081';
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
+Vue.use(axios);
+Vue.use(qs);
 Vue.use(ElementUI, {
     size: 'small'
 });
